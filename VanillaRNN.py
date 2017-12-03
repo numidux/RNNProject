@@ -3,6 +3,8 @@ import itertools
 import nltk
 import numpy as np
 
+from RNNClass import RNNClass
+
 vocabulary_size = 8000
 unknown_token = "UNKNOWN_TOKEN"
 sentence_start_token = "SENTENCE_START"
@@ -41,3 +43,9 @@ print("Example sentence after pre processing = %s " % tokenized_sentences[0])
 
 X_train = np.asarray([[word_to_index[w] for w in sent[:-1]] for sent in tokenized_sentences])
 Y_train = np.asarray([[word_to_index[w] for w in sent[1:]] for sent in tokenized_sentences])
+
+np.random.seed(10)
+model = RNNClass(vocabulary_size)
+prediction = model.predict(X_train[10])
+print(prediction.shape)
+print(prediction)
